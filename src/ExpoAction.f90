@@ -280,12 +280,12 @@ program ExpoAction
 		write(time,*) t
 		
 		!load matrix and vector data
-		call Nullarbor_Import_Vector(v, "Input/Vector/" // trim(vector_name))
+		call Nullarbor_Import_Vector(v, "Input/Vectors/" // trim(vector_name))
 		
 		if(trim(matrix_type).eq."dense")then
 			
 			call Nullarbor_Import_Dense_Matrix(dense, &
-					& "Input/Matrix/" // trim(matrix_name))
+					& "Input/Matrices/" // trim(matrix_name))
 					
 			A = Sparse(dense)
 			
@@ -293,7 +293,7 @@ program ExpoAction
 			
 		else
 		
-			call Nullarbor_Import_Sparse_Matrix(A, "Input/Matrix/" // trim(matrix_name))
+			call Nullarbor_Import_Sparse_Matrix(A, "Input/Matrices/" // trim(matrix_name))
 			
 			A = A
 			

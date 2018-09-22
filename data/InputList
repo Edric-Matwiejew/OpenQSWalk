@@ -1,63 +1,22 @@
 ExpoAction Input:
 
 Number of inputs:
-1
+2
 
 Matrix file name:
-TestM.dat
+Test10by10.dat
 Vector file name:
-Testv.dat
+Test10.dat
 time:
 1.0
 Matrix file type (sparse/dense):
 dense
 
 Matrix file name:
-M160.dat
+Test800by800.dat
 Vector file name:
-v160.dat
+Test800.dat
 time:
 1.0
 Matrix file type (sparse/dense):
 dense
-
-Matrix file name:
-M200.dat
-Vector file name:
-v200.dat
-time:
-1.0
-Matrix file type (sparse/dense):
-dense
-
-Matrix file name:
-M320.dat
-Vector file name:
-v320.dat
-time:
-1.0
-Matrix file type (sparse/dense):
-dense
-
-Matrix file name:
-M640.dat
-Vector file name:
-v640.dat
-time:
-1.0
-Matrix file type (sparse/dense):
-dense
-
-Matrix file name:
-M800.dat
-Vector file name:
-v800.dat
-time:
-1.0
-Matrix file type (sparse/dense):
-dense
-
-
-
-
-
