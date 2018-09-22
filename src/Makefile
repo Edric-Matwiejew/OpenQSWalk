@@ -5,8 +5,8 @@ FFLAGS = -O2 -fopenmp
 OBJECTS = Nullarbor.o ExpoAction.o
 MODS = nullarbor.mod expo.mod
 
-PARENTDIRS = Input Output 
-CHILDDIRS = Input/Matrices Input/Vectors Output/LogFiles
+PARENTDIRS = Input Output Options
+CHILDDIRS = Input/Matrices Input/Vectors Output/LogFiles Options/data
 
 %.o: %.f90
 	$(FC) $(FFLAGS) -c $< -o $@ 
