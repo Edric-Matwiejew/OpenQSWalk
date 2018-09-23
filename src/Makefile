@@ -8,7 +8,7 @@ FC = gfortran
 FFLAGS = -O2 -fopenmp
 
 #Created objects and modules.
-OBJECTS = Nullarbor.o ExpoAction.o
+OBJECTS = Nullarbor.o ExpoAction.o hb_read.o
 MODS = nullarbor.mod expo.mod
 
 #Creating file structure and copying data files to directories.
@@ -49,6 +49,8 @@ ExpoAction: $(OBJECTS)
 ExpoAction.o: Nullarbor.o ExpoAction.f90
 
 Nullarbor.o: Nullarbor.f90
+
+hb_read.o: hb_read.f90
 
 .PHONY: test clean veryclean
 

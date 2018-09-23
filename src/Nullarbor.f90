@@ -15,7 +15,8 @@ module Nullarbor
 	public :: Sparse_Assignment, Sparse_Deallocate, Vector_MaxValPos_Real
 	public :: Vector_Merge_Ordered_Pair_Real_Integer
 	public :: Vector_Merge_Sort_Ordered_Pair_Real_Integer 
-	public ::  Nullarbor_Import_Dense_Matrix 
+	public ::  Nullarbor_Import_Dense_Matrix, Nullarbor_Import_Harwell_Boeing 
+	public :: Sparse_Write
 
 	! Public functions.
 	public :: Sparse, SparseDense_MatMul, Sparse_Conjugate, Sparse_OneNormEst
@@ -33,7 +34,7 @@ module Nullarbor
 	! Compressed Sparse Row (CSR) 2D-array derived data type, old Yale format.
 		
 		integer:: ROWS, COLUMNS 
-		complex(8), dimension(:), allocatable :: num !non-zero values
+		complex(8), dimension(:), allocatable :: num !non-zero A%num
 		integer, dimension(:), allocatable :: ir !row jc index
 		integer, dimension(:), allocatable :: jc !column index
 		
@@ -366,6 +367,134 @@ module Nullarbor
 		end if
 					
 	end subroutine Vector_Merge_Sort_Ordered_Pair_Real_Integer
+	
+	subroutine Nullarbor_Import_Harwell_Boeing (filename, A)
+
+  implicit none
+
+	type(CSR),intent(inout) :: A
+	type(CSR) :: B
+ 
+  character ( len = * ) filename
+  integer ( kind = 4 ) indcrd
+  character ( len = 16 ) indfmt
+  integer ( kind = 4 ) input
+  integer ( kind = 4 ) ios
+  integer ( kind = 4 ) nnzero
+  integer ( kind = 4 ) nrhs
+  integer ( kind = 4 ) nrhsix
+  character ( len = 16 ) ptrfmt
+  integer ( kind = 4 ) rhscrd
+  character ( len = 20 ) rhsfmt
+  character ( len = 3 ) rhstyp
+  complex ( kind = 8 ), allocatable :: rhsval(:,:)
+  integer ( kind = 4 ) valcrd
+  character ( len = 20 ) valfmt
+
+
+!  #1: Open the file.
+!
+  call get_unit ( input )
+ 
+  open ( unit = input, file = filename, status = 'old', iostat = ios )
+
+  if ( ios /= 0 ) then
+    write ( *, '(a)' ) ''
+    write ( *, '(a)' ) 'TEST08 - Warning!'
+    write ( *, '(a)' ) '  Could not open file "' // trim ( filename ) // '".'
+    return
+  end if
+!
+!  #1: Read the header.
+!
+  call C8_hb_header_read ( input, A%ROWS, A%COLUMNS, nnzero, rhstyp, nrhs, nrhsix, &
+    valcrd, rhscrd, ptrfmt, indfmt, valfmt, rhsfmt )
+
+!  #2: Allocate space.
+!
+  allocate ( A%ir(1:A%COLUMNS+1) )
+
+  if ( 0 < nrhs ) then
+    allocate ( rhsval(A%ROWS,nrhs) )
+  end if
+
+  if ( 0 < nnzero ) then
+    allocate ( A%jc(1:nnzero) )
+    allocate ( A%num(1:nnzero) )
+  end if
+!
+!  #3: Read the structure and data.
+!
+  call c8_hb_data_read ( input, A%ROWS, A%COLUMNS, nnzero, rhstyp, nrhs, nrhsix, &
+    valcrd, rhscrd, ptrfmt, indfmt, valfmt, rhsfmt, A%ir, A%jc, A%num, &
+    rhsval )
+!
+!  #4: Close the file.
+!
+  close ( unit = input )
+
+!  
+!#5: Transpose to produce CSR.
+!
+  A = Sparse_Transpose(A)
+
+end subroutine Nullarbor_Import_Harwell_Boeing 
+
+		subroutine Sparse_Write(A, row1, column1, row2, column2)
+		
+	! Write CSR type to the terminal.
+		
+	type(CSR), intent(in) :: A
+	integer, intent(in) :: row1, row2, column1, column2
+		
+	integer :: i, j, k
+	logical :: empty
+
+	do i = row1, row2
+		
+		do k = column1, column2
+	
+			empty = .true.
+	
+			if((A%ir(i+1)-A%ir(i)).eq.0)then
+	
+				 	write(*,'(A11,I1,A11)', advance='no')"", 0,"" 
+				 	empty = .false.
+	
+			else
+	
+				do j = A%ir(i), A%ir(i + 1) - 1
+	
+						if(A%jc(j).eq.k)then
+	
+							write(*,'(A1,f8.3,A3,f8.3,A1,A2)',&
+									& advance='no')"", real(A%num(j)), &
+											& " +", aimag(A%num(j)), "i", ""
+	
+							empty = .false.
+	
+							exit
+	
+						end if
+	
+				end do
+	
+			end if
+		
+			if(empty)then
+			 
+			 	write(*,'(A11,I1,A11)', advance='no')"", 0,"" 
+			
+			end if
+		
+		end do
+		
+		write(*,*)
+
+	end do 
+				
+	end subroutine Sparse_Write
+		
 	
 	! Functions
 	
@@ -917,7 +1046,7 @@ module Nullarbor
 			Pick_Random_Int = intlist(int(r*size(intlist))+1) 
 			
 	end function Pick_Random_Int	
-		
+	
 	end module Nullarbor
 	
 

@@ -1,0 +1,139 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4073,        131]
+NotebookOptionsPosition[      3551,        108]
+NotebookOutlinePosition[      3885,        123]
+CellTagsIndexPosition[      3842,        120]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"RandomComplexMatrix", "[", 
+    RowBox[{"m_", ",", "n_"}], "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"RandomReal", "[", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "1"}], "}"}], "]"}], ">", "0.9"}], ",", 
+       RowBox[{"RandomComplex", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "1.0"}], "-", 
+           RowBox[{"1.0", "I"}]}], ",", 
+          RowBox[{"1.0", "+", 
+           RowBox[{"1.0", "I"}]}]}], "}"}], "]"}], ",", "0"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "m"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "1", ",", "n"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"RandomComplexVector", "[", "m_", "]"}], " ", ":=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"RandomComplex", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"0.1", "+", 
+         RowBox[{"0.1", "I"}]}], ",", 
+        RowBox[{"1.0", "+", 
+         RowBox[{"1.0", " ", "I"}]}]}], "}"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "m"}], "}"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.746614660341999*^9, 3.746614696445813*^9}, {
+  3.746673707146682*^9, 3.7466737081213512`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nn", " ", "=", " ", "10"}], ";"}]], "Input",
+ CellChangeTimes->{{3.746614473744454*^9, 3.746614476600808*^9}, {
+  3.746658643182617*^9, 3.746658643494031*^9}, {3.7466662918260727`*^9, 
+  3.746666293937345*^9}, {3.746666971024547*^9, 3.7466669712079897`*^9}, {
+  3.746673334307638*^9, 3.746673335240834*^9}, {3.7466737840656853`*^9, 
+  3.746673784544299*^9}, {3.7466738808899403`*^9, 3.746673898036734*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"M", "=", 
+    RowBox[{"RandomComplexMatrix", "[", 
+     RowBox[{"nn", ",", "nn"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.746614342403384*^9, 3.7466143636621304`*^9}, {
+   3.746614479641398*^9, 3.7466144946726627`*^9}, {3.7466148225651217`*^9, 
+   3.746614827612747*^9}, 3.746666743442521*^9, 3.7466673366146173`*^9, {
+   3.7466733503067083`*^9, 3.746673350897073*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.746674165631748*^9, 3.746674184488549*^9}}],
+
+Cell[BoxData["\<\"/mnt/3916D40A2832CDCB/Google Drive/Uni Stuff/Year \
+5/GitHub/OpenQSWalk/src\"\>"], "Output",
+ CellChangeTimes->{3.746674185845972*^9, 3.746696640026577*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<out.rsa\>\"", ",", "M"}], "]"}]], "Input",
+ CellChangeTimes->{{3.746674188556759*^9, 3.746674230923677*^9}, {
+  3.746696620457406*^9, 3.746696646305372*^9}}],
+
+Cell[BoxData["\<\"M.rsa\"\>"], "Output",
+ CellChangeTimes->{3.74669664127075*^9}]
+}, Open  ]]
+},
+WindowSize->{1279, 1412},
+WindowMargins->{{1, Automatic}, {1, Automatic}},
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1373, 41, 55, "Input"],
+Cell[1934, 63, 441, 7, 30, "Input"],
+Cell[2378, 72, 453, 10, 51, "Input"],
+Cell[CellGroupData[{
+Cell[2856, 86, 170, 3, 32, "Input"],
+Cell[3029, 91, 174, 2, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3240, 98, 211, 4, 32, "Input"],
+Cell[3454, 104, 81, 1, 30, "Output"]
+}, Open  ]]
+}
+]
+*)
+

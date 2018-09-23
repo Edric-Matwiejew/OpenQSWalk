@@ -235,7 +235,7 @@ program ExpoAction
 	character(128) :: time
 	character(8)  :: date
   character(6) :: current_time
-
+  
 	call get_command_argument(1,input_file)
 		
 	!read in options
