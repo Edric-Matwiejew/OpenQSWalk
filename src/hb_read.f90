@@ -1,3 +1,7 @@
+module hb_read
+
+contains
+
 subroutine c4_hb_data_read ( input, nrow, ncol, nnzero, rhstyp, nrhs, nrhsix, &
   valcrd, rhscrd, ptrfmt, indfmt, valfmt, rhsfmt, colptr, rowind, values, &
   rhsval )
@@ -3414,3 +3418,5 @@ subroutine timestamp ( )
 
   return
 end
+
+end module hb_read

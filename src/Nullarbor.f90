@@ -1,6 +1,7 @@
 module Nullarbor
 
-	use omp_lib
+	use omp_lib, only: omp_get_max_threads, omp_get_thread_num, omp_get_num_threads 
+	use hb_read, only: get_unit, C8_hb_header_read, C8_hb_data_read
 
 	implicit none
 
@@ -425,7 +426,7 @@ module Nullarbor
 !
 !  #3: Read the structure and data.
 !
-  call c8_hb_data_read ( input, A%ROWS, A%COLUMNS, nnzero, rhstyp, nrhs, nrhsix, &
+  call C8_hb_data_read ( input, A%ROWS, A%COLUMNS, nnzero, rhstyp, nrhs, nrhsix, &
     valcrd, rhscrd, ptrfmt, indfmt, valfmt, rhsfmt, A%ir, A%jc, A%num, &
     rhsval )
 !

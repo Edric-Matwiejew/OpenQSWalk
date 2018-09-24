@@ -9,7 +9,7 @@ FFLAGS = -O2 -fopenmp
 
 #Created objects and modules.
 OBJECTS = Nullarbor.o ExpoAction.o hb_read.o
-MODS = nullarbor.mod expo.mod
+MODS = nullarbor.mod expo.mod hb_read.mod
 
 #Creating file structure and copying data files to directories.
 PROGRAM_DIR := $(INSTALL_DIR)/ExpoAction
@@ -43,14 +43,17 @@ $(shell cp $(INSTALL_DATA)/theta.dat $(DATA_DIR))
 %.o: %.f90
 	$(FC) $(FFLAGS) -c $< -o $@ 
 
+
+
+
 ExpoAction: $(OBJECTS)
 	$(FC) $(FFLAGS) $(OBJECTS) -o $(PROGRAM_DIR)/ExpoAction
 
-ExpoAction.o: Nullarbor.o ExpoAction.f90
+ExpoAction.o: hb_read.o Nullarbor.o ExpoAction.f90
 
-Nullarbor.o: Nullarbor.f90
+Nullarbor.o: hb_read.f90 Nullarbor.f90
+	$(FC) $(FFLAGS) -c hb_read.f90 Nullarbor.f90
 
-hb_read.o: hb_read.f90
 
 .PHONY: test clean veryclean
 
