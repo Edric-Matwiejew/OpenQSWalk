@@ -290,6 +290,11 @@ program ExpoAction
 			A = Sparse(dense)
 			
 			deallocate(dense)
+		
+		else if(trim(matrix_type).eq."Harwell-Boeing")then
+		
+			call Nullarbor_Import_Harwell_Boeing(A, &
+					& "Input/Matrices/" // trim(matrix_name))
 			
 		else
 		

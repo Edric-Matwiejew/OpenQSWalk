@@ -1,6 +1,7 @@
 module Nullarbor
 
-	use omp_lib, only: omp_get_max_threads, omp_get_thread_num, omp_get_num_threads 
+	use omp_lib, only: omp_get_max_threads, omp_get_thread_num, & 
+			& omp_get_num_threads 
 	use hb_read, only: get_unit, C8_hb_header_read, C8_hb_data_read
 
 	implicit none
@@ -369,7 +370,7 @@ module Nullarbor
 					
 	end subroutine Vector_Merge_Sort_Ordered_Pair_Real_Integer
 	
-	subroutine Nullarbor_Import_Harwell_Boeing (filename, A)
+	subroutine Nullarbor_Import_Harwell_Boeing (A,filename)
 
   implicit none
 
