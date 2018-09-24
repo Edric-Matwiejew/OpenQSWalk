@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      4185,        134]
-NotebookOptionsPosition[      3658,        111]
-NotebookOutlinePosition[      3997,        126]
-CellTagsIndexPosition[      3954,        123]
+NotebookDataLength[      9135,        262]
+NotebookOptionsPosition[      8380,        231]
+NotebookOutlinePosition[      8718,        246]
+CellTagsIndexPosition[      8675,        243]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -57,30 +57,104 @@ Cell[BoxData[{
         RowBox[{"1.0", "+", 
          RowBox[{"1.0", " ", "I"}]}]}], "}"}], "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"i", ",", "m"}], "}"}]}], "]"}]}], ";"}]}], "Input",
+      RowBox[{"i", ",", "m"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ComplexVectorExport", "[", 
+    RowBox[{"vector_", ",", "filename_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", " ", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"v", "=", " ", "vector"}], ",", " ", 
+       RowBox[{"name", " ", "=", " ", "filename"}], ",", " ", "export"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"export", " ", "=", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", 
+           RowBox[{"Length", "[", "v", "]"}]}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "<", 
+         RowBox[{
+          RowBox[{"Length", "[", "vector", "]"}], "+", "1"}]}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"AppendTo", "[", 
+          RowBox[{
+           RowBox[{"export", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], ",", " ", 
+           RowBox[{"Re", "[", 
+            RowBox[{"vector", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{
+           RowBox[{"export", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], ",", " ", 
+           RowBox[{"Im", "[", 
+            RowBox[{"vector", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "]"}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"PrependTo", "[", 
+       RowBox[{"export", ",", 
+        RowBox[{"{", 
+         RowBox[{"Length", "[", "vector", "]"}], "}"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Export", "[", 
+       RowBox[{"filename", ",", "export"}], "]"}]}]}], "]"}]}], 
+  ";"}]}], "Input",
  CellChangeTimes->{{3.746614660341999*^9, 3.746614696445813*^9}, {
-  3.746673707146682*^9, 3.7466737081213512`*^9}}],
+  3.746673707146682*^9, 3.7466737081213512`*^9}, {3.746745458110035*^9, 
+  3.746745458520884*^9}}],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"nn", " ", "=", " ", "10"}], ";"}]], "Input",
+  RowBox[{"nn", " ", "=", " ", "1000"}], ";"}]], "Input",
  CellChangeTimes->{{3.746614473744454*^9, 3.746614476600808*^9}, {
   3.746658643182617*^9, 3.746658643494031*^9}, {3.7466662918260727`*^9, 
   3.746666293937345*^9}, {3.746666971024547*^9, 3.7466669712079897`*^9}, {
   3.746673334307638*^9, 3.746673335240834*^9}, {3.7466737840656853`*^9, 
-  3.746673784544299*^9}, {3.7466738808899403`*^9, 3.746673898036734*^9}}],
+  3.746673784544299*^9}, {3.7466738808899403`*^9, 3.746673898036734*^9}, {
+  3.746750947716138*^9, 3.7467509494195623`*^9}, {3.746751002786701*^9, 
+  3.746751008009303*^9}, {3.746751250522023*^9, 3.7467512509450827`*^9}}],
 
-Cell[BoxData[
+Cell[BoxData[{
  RowBox[{
-  RowBox[{
-   RowBox[{"M", "=", 
-    RowBox[{"RandomComplexMatrix", "[", 
-     RowBox[{"nn", ",", "nn"}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}]], "Input",
+  RowBox[{"M", "=", 
+   RowBox[{"SetPrecision", "[", 
+    RowBox[{
+     RowBox[{"RandomComplexMatrix", "[", 
+      RowBox[{"nn", ",", "nn"}], "]"}], ",", "17"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"v", " ", "=", " ", 
+   RowBox[{"SetPrecision", "[", 
+    RowBox[{
+     RowBox[{"RandomComplexVector", "[", "nn", "]"}], ",", "17"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Mvexp", " ", "=", " ", 
+   RowBox[{"SetPrecision", "[", 
+    RowBox[{
+     RowBox[{"MatrixExp", "[", 
+      RowBox[{"M", ",", "v"}], "]"}], ",", "17"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.746614342403384*^9, 3.7466143636621304`*^9}, {
    3.746614479641398*^9, 3.7466144946726627`*^9}, {3.7466148225651217`*^9, 
    3.746614827612747*^9}, 3.746666743442521*^9, 3.7466673366146173`*^9, {
-   3.7466733503067083`*^9, 3.746673350897073*^9}}],
+   3.7466733503067083`*^9, 3.746673350897073*^9}, {3.746744444061346*^9, 
+   3.746744445493084*^9}, {3.746745043057506*^9, 3.7467450577124863`*^9}, {
+   3.74674518972821*^9, 3.746745213399878*^9}, {3.746745883459824*^9, 
+   3.746745903348296*^9}, {3.746746105820449*^9, 3.746746136044208*^9}, {
+   3.746746231301606*^9, 3.746746238124444*^9}, {3.746749140365563*^9, 
+   3.7467491522772493`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -91,8 +165,11 @@ Cell[BoxData[
 
 Cell[BoxData["\<\"/mnt/3916D40A2832CDCB/Google Drive/Uni Stuff/Year \
 5/GitHub/OpenQSWalk/test\"\>"], "Output",
- CellChangeTimes->{3.746674185845972*^9, 3.746696640026577*^9, 
-  3.746744142532583*^9}]
+ CellChangeTimes->{
+  3.746674185845972*^9, 3.746696640026577*^9, {3.746744142532583*^9, 
+   3.746744172097294*^9}, 3.746745700231485*^9, 3.746746139784865*^9, 
+   3.74674624164504*^9, 3.746749264642857*^9, 3.746750959551586*^9, 
+   3.746751260919964*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -105,12 +182,55 @@ Cell[BoxData[
   3.746696620457406*^9, 3.746696646305372*^9}, {3.746744146349812*^9, 
   3.746744165661881*^9}}],
 
-Cell[BoxData["\<\"M.rsa\"\>"], "Output",
- CellChangeTimes->{3.74669664127075*^9}]
+Cell[BoxData["\<\"../ExpoAction/Input/Matrices/out.rsa\"\>"], "Output",
+ CellChangeTimes->{3.74669664127075*^9, 3.746744172330471*^9, 
+  3.746745700255537*^9, 3.7467461398017397`*^9, 3.746746241661837*^9, 
+  3.746749264739664*^9, 3.746750959888177*^9, 3.746751261308402*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ComplexVectorExport", "[", 
+  RowBox[{"v", ",", "\"\<../ExpoAction/Input/Vectors/v.dat\>\""}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.746745071066184*^9, 3.746745078600175*^9}, {
+  3.746745117649219*^9, 3.746745173791027*^9}, {3.7467454718158092`*^9, 
+  3.746745493629044*^9}, {3.7467456908710737`*^9, 3.74674569481288*^9}}],
+
+Cell[BoxData["\<\"../ExpoAction/Input/Vectors/v.dat\"\>"], "Output",
+ CellChangeTimes->{
+  3.746745079141199*^9, {3.7467451327043447`*^9, 3.746745175230693*^9}, 
+   3.746745494464334*^9, {3.746745696749785*^9, 3.746745700272871*^9}, 
+   3.746746139812687*^9, 3.746746241676952*^9, 3.74674926484794*^9, 
+   3.746750960124311*^9, 3.746751261540769*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<Mvexp.dat\>\"", ",", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"FortranForm", "[", 
+      RowBox[{"Mvexp", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "v", "]"}]}], "}"}]}], "]"}]}], "]"}]], "Input",\
+
+ CellChangeTimes->{{3.746745282167367*^9, 3.746745309351308*^9}, {
+  3.74674586659737*^9, 3.746745870412014*^9}}],
+
+Cell[BoxData["\<\"Mvexp.dat\"\>"], "Output",
+ CellChangeTimes->{3.746745311599676*^9, 3.746745700289357*^9, 
+  3.74674613982309*^9, 3.746746241689825*^9, 3.746749264977276*^9, 
+  3.7467509602753553`*^9, 3.746751261609846*^9}]
 }, Open  ]]
 },
 WindowSize->{1279, 1412},
-WindowMargins->{{Automatic, -218}, {-57, Automatic}},
+WindowMargins->{{Automatic, 32}, {-119, Automatic}},
 FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -125,16 +245,24 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 1373, 41, 55, "Input"],
-Cell[1934, 63, 441, 7, 30, "Input"],
-Cell[2378, 72, 453, 10, 51, "Input"],
+Cell[558, 20, 3296, 94, 198, "Input"],
+Cell[3857, 116, 591, 9, 30, "Input"],
+Cell[4451, 127, 1268, 29, 91, "Input"],
 Cell[CellGroupData[{
-Cell[2856, 86, 170, 3, 32, "Input"],
-Cell[3029, 91, 200, 3, 32, "Output"]
+Cell[5744, 160, 170, 3, 32, "Input"],
+Cell[5917, 165, 367, 6, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3266, 99, 292, 6, 32, "Input"],
-Cell[3561, 107, 81, 1, 30, "Output"]
+Cell[6321, 176, 292, 6, 32, "Input"],
+Cell[6616, 184, 274, 3, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6927, 192, 351, 6, 32, "Input"],
+Cell[7281, 200, 350, 5, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7668, 210, 468, 13, 32, "Input"],
+Cell[8139, 225, 225, 3, 32, "Output"]
 }, Open  ]]
 }
 ]
