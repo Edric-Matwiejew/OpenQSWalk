@@ -234,7 +234,7 @@ program ExpoAction
 	character(128) :: matrix_name, vector_name, matrix_type, input_file, log_name
 	character(128) :: time
 	character(8)  :: date
-  character(6) :: current_time
+  character(10) :: current_time
   
 	call get_command_argument(1,input_file)
 		

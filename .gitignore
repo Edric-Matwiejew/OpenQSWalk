@@ -2,6 +2,14 @@
 ###################
 *.o
 *.mod
+*.log
+*.optrpt
+
+# Performance Analysis #
+########################
+
+ExpoAnalyse
+config
 
 # OS generated files #
 ######################
@@ -13,6 +21,8 @@
 ehthumbs.db
 Thumbs.db
 
-# Folders #
+# Misc Folders #
 ###########
 ExpoAction
+ExpoAnalyse
+

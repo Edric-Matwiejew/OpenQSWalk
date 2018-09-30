@@ -233,7 +233,7 @@ module Nullarbor
 	subroutine Sparse_Assignment(B, A)
 		
 		type(CSR), intent(in) :: A
-		type(CSR), allocatable, intent(out) :: B
+		type(CSR), intent(out) :: B
 		
 		integer :: i, length
 		
@@ -666,6 +666,8 @@ end subroutine Nullarbor_Import_Harwell_Boeing
 		complex(8), dimension(:,:), allocatable :: SparseDense_MatMul
 		type(CSR), intent(in) :: A
 		complex(8), dimension(:,:), intent(in) ::B
+		
+		!dir$ attributes align: 64:: A%IR
 		
 		integer :: i, j ,k
 

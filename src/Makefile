@@ -4,8 +4,11 @@
 INSTALL_DIR = ..
 
 #Compiler flags.
-FC = gfortran
-FFLAGS = -O2 -fopenmp
+FC = ifort
+FFLAGS = -g -O3 -qopt-report=5 -vec -simd -qopenmp -shared-intel -ldl -mavx2 -xCORE-AVX2
+FFLAGS2 = -qoverride-limits -I$/opt/intel/parallel_studio_xe_2019.0.045/include/ia64 
+FFLAGS3 = -L$/opt/intel/parallel_studio_xe_2019.0.045/lib64
+FFLAGS4 = -Iadvisor
 
 #Created objects and modules.
 OBJECTS = Nullarbor.o ExpoAction.o hb_read.o
@@ -41,18 +44,18 @@ $(shell cp $(INSTALL_DATA)/theta.dat $(DATA_DIR))
 #Compile ExpoAction
 
 %.o: %.f90
-	$(FC) $(FFLAGS) -c $< -o $@ 
+	$(FC) $(FFLAGS) $(FFLAGS2) $(FFLAGS3) $(FFLAGS4) -c $< -o $@ 
 
 
 
 
 ExpoAction: $(OBJECTS)
-	$(FC) $(FFLAGS) $(OBJECTS) -o $(PROGRAM_DIR)/ExpoAction
+	$(FC) $(FFLAGS) $(FFLAGS2) $(FFLAGS3) $(FFLAGS4) $(OBJECTS) -o $(PROGRAM_DIR)/ExpoAction
 
 ExpoAction.o: hb_read.o Nullarbor.o ExpoAction.f90
 
 Nullarbor.o: hb_read.f90 Nullarbor.f90
-	$(FC) $(FFLAGS) -c hb_read.f90 Nullarbor.f90
+	$(FC) $(FFLAGS) $(FFLAGS2) $(FFLAGS3) $(FFLAGS4) -c hb_read.f90 Nullarbor.f90
 
 
 .PHONY: test clean veryclean
