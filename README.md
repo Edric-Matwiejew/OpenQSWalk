@@ -5,4 +5,4 @@ Currently this repository consists of the program "ExpoAction" which calculates 
 
 The program is designed to work with compressed sparse row (CSR) matrices (the Harwell-Boeing format is supported for import and export) has been parallelised using OpenMp. This mostly occurs in Nullarbor.f90. “Nullarbor” is a library supporting CSR matrix operations import and export. Its development was necessitated by the requirements of the assignment for which “ExpoAction” was coded. 
 
-High on the To-Do list is the replacement of Nullarbor with a (presumably) more optimised library (i.e. BLAS). 
+High on the To-Do list is the replacement of Nullarbor with a (presumably) more optimised library (i.e. Intel MKL Sparse BLAS). 
